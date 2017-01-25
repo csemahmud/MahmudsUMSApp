@@ -1,0 +1,96 @@
+﻿@model MahmudsUMSApp.Models.Course
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2 class="fa fa-2x">Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Course</legend>
+
+        @Html.HiddenFor(model => model.CourseID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CourseCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CourseCode)
+            @Html.ValidationMessageFor(model => model.CourseCode)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CourseName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CourseName)
+            @Html.ValidationMessageFor(model => model.CourseName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Credit)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Credit)
+            @Html.ValidationMessageFor(model => model.Credit)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DepartmentID, "Department")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("DepartmentID", String.Empty)
+            @Html.ValidationMessageFor(model => model.DepartmentID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SemesterID, "Semester")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("SemesterID", String.Empty)
+            @Html.ValidationMessageFor(model => model.SemesterID)
+        </div>
+
+        <div class="editor-field">
+            @Html.HiddenFor(model => model.IsValid)
+            @Html.ValidationMessageFor(model => model.IsValid)
+        </div>
+
+        <div class="editor-field">
+            <input type="hidden" id="PreCredit" name="PreCredit" value="@Model.Credit" />
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+                alert("@ViewBag.Message");
+            });
+        </script>
+    }
+    
+}

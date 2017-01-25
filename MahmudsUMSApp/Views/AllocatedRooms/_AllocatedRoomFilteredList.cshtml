@@ -1,0 +1,43 @@
+﻿@model IEnumerable<MahmudsUMSApp.Models.Course>
+
+<table class="table table-responsive table-bordered table-condensed table-striped table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseName)
+        </th>
+        <th>
+            Schedule Information
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseName)
+        </td>
+        <td>
+            @foreach (var allocatedRoom in item.AllocatedRoomList)
+{
+    <a class="a_room" href="/AllocatedRooms/Details/@Html.DisplayFor(modelItem => allocatedRoom.AllocatedRoomID)">
+        <strong>R.No:</strong>
+        @Html.DisplayFor(modelItem => allocatedRoom.Room.RoomNo)
+        <span>,</span>
+        @Html.DisplayFor(modelItem => allocatedRoom.WeekDay.DayName)
+        <span>,</span>
+        @Html.DisplayFor(modelItem => allocatedRoom.StartTime)
+        <span>-</span>
+        @Html.DisplayFor(modelItem => allocatedRoom.EndTime)
+        <span>;</span>
+    </a>
+}
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,76 @@
+﻿@model IEnumerable<MahmudsUMSApp.Models.Teacher>
+
+@{
+    ViewBag.Title = "List of All Teachers :-";
+}
+
+<h2 class="fa fa-2x">List of All Teachers :-</h2>
+
+<p>
+    @Html.ActionLink("Enter New Teacher", "Create")
+</p>
+<table class="table table-responsive table-bordered table-condensed table-striped table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TeacherName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreditsToBeTaken)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreditsHaveTaken)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department.DeptCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Designation.DsgName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TeacherName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreditsToBeTaken)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreditsHaveTaken)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.DeptCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Designation.DsgName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.TeacherID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.TeacherID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.TeacherID })
+            </td>
+        </tr>
+    }
+
+</table>

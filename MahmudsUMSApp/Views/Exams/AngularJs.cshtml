@@ -1,0 +1,311 @@
+﻿@{
+    ViewBag.Title = "AngularJs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+
+    <style type="text/css">
+
+        .odd {
+            background-color: #663399;
+            color: #ffff00;
+            font-family: 'Comic Sans MS';
+            font-style: italic;
+        }
+
+        .odd2 {
+            background-color: #ffccff;
+            color: #000000;
+        }
+
+        .even {
+            background-color: #99cc66;
+            color: #0000ff;
+            font-family: 'Times New Roman';
+            font-weight: 900;
+        }
+
+        .even2 {
+            background-color: #ffffcc;
+            color: #000000;
+        }
+
+        #topheader {
+            height: auto;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        #headerAJS {
+            height: auto;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        #headerCount {
+            height: auto;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        #row1 {
+            height: auto;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        #row2 {
+            height: auto;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        #row3 {
+            height: auto;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        #row4 {
+            height: auto;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        #row5 {
+            height: auto;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+    </style>
+    
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/i18n/angular-locale_bn-bd.js"></script>
+    <script src="~/Scripts/modules/mahmuds_ums_app.js"></script>
+    <script src="~/Scripts/services/exams_service.js"></script>
+    <script src="~/Scripts/filters/custom_filters.js"></script>
+    <script src="~/Scripts/controllers/exams_controller.js"></script>
+
+}
+
+<div style="width: 100%; float: left;" ng-app="MahmudsUMSApp">
+    <div class="container container-fluid" ng-controller="ExamsController">
+        <div id="topheader" class="panel panel-heading">
+            <div class="row-fluid">
+                <div class="col-lg-6 span6">
+                    <h3 id="headerAJS" class="fa fa-2x">AngularJs</h3>
+                </div>
+                <div class="col-lg-6 span6">
+                    <h4 id="headerCount">
+                        <i class="icon-bar"></i>{{message}}
+                        <span class="label label-primary">{{student.Exams.length}}</span>
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <div id="row1" class="panel-body">
+            <div class="row-fluid">
+                <div class="span12">
+                    @if (Session["Email"] != null)
+                    {
+                        <p>
+                            <span>
+                                @Html.ActionLink("Enroll New Student", "Create")
+                                | @Html.ActionLink("Enter Result", "ResultEntry")
+                            </span>
+                        </p>
+                    }
+                </div>
+            </div>
+        </div>
+        <div id="row2" class="panel-body">
+            <div class="row-fluid">
+                <div class="col-lg-6 span6">
+                    <span>Select Student Reg No :-</span>
+                    <select class="dropdown" ng-model="regNo"
+                            ng-options="reg for reg in students | orderBy:'RegNo' | unique:'RegNo'"
+                            ng-change="changePage()"></select>
+                </div>
+                <div class="col-lg-6 span6">
+                    <span>Select Courses Per Page :-</span>
+                    <select class="dropdown" ng-model="pageSize"
+                            ng-options="num for num in limitRange"
+                            ng-change="resetPage()"></select>
+                </div>
+            </div>
+        </div>
+        <div id="row1" class="panel-body">
+            <div class="row-fluid">
+                <div class="span12">
+                    <table>
+                        <tr>
+                            <td>
+                                <strong>Student Name :-</strong>
+                            </td>
+                            <td class="fa">
+                                <i>
+                                    {{student.StudentName}}
+                                </i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Email :-</strong>
+                            </td>
+                            <td class="fa">
+                                <i>
+                                    {{student.Email}}
+                                </i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Department :-</strong>
+                            </td>
+                            <td class="fa">
+                                <i>
+                                    {{student.DeptName}}
+                                </i>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <form action="/Exams/ViewPDFResult" method="post">
+
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+
+                        <fieldset>
+                            <input type="text" id="StudentID" name="StudentID" ng-model="student.StudentID" readonly="readonly" ng-hide="true" />
+                            <input class="btn btnDone btn-default btn-primary" type="submit"
+                                   ng-disabled="(student == null) || (student.Exams.length < 1)"
+                                   value="View in PDF" />
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="row4" class="box panel-body sortable">
+            <div class="box row-fluid sortable">
+                <div class="box-content span12">
+                    <table class="table table-responsive table-bordered table-condensed table-striped table-hover">
+                        <tr>
+                            <th class="odd">
+                                SL
+                            </th>
+                            <th class="odd">
+                                Course Code
+                            </th>
+                            <th class="odd2">
+                                Course Name
+                            </th>
+                            <th class="odd2">
+                                Grade Letter
+                            </th>
+                            <th class="odd2">
+                                Enrollment Date
+                            </th>
+                            @if (Session["Email"] != null)
+                            {
+                                <th class="odd2">
+                                    Is Valid ?
+                                </th>
+                            }
+                        </tr>
+                        <tr ng-repeat="e in student.Exams | orderBy:'-CourseCode' | range:selectedPage:pageSize">
+                            <td ng-if="$even" class="even">
+                                {{$index+1}}
+                            </td>
+                            <td ng-if="$odd" class="odd">
+                                {{$index+1}}
+                            </td>
+                            <td ng-if="$even" class="even">
+                                {{e.CourseCode|lowercase}}
+                            </td>
+                            <td ng-if="$odd" class="odd">
+                                {{e.CourseCode|lowercase}}
+                            </td>
+                            <td ng-if="$even" class="even2">
+                                {{e.CourseName|lowercase}}
+                            </td>
+                            <td ng-if="$odd" class="odd2">
+                                {{e.CourseName|uppercase}}
+                            </td>
+                            <td ng-if="$even && e.IsGradeSubmitted" class="even2">
+                                {{e.GradeLetter|uppercase}}
+                            </td>
+                            <td ng-if="$even && (!e.IsGradeSubmitted)" class="even2">
+                                <strong class="error">Not Publisshed</strong>
+                            </td>
+                            <td ng-if="$odd && e.IsGradeSubmitted" class="odd2">
+                                {{e.GradeLetter|uppercase}}
+                            </td>
+                            <td ng-if="$odd && (!e.IsGradeSubmitted)" class="odd2">
+                                <strong class="error">Not Publisshed</strong>
+                            </td>
+                            <td ng-if="$even" class="even2">
+                                {{getEnrollmentDate(e.EnrollmentDate) | date:"EEEE dd-MMM-yyyy"}}
+                            </td>
+                            <td ng-if="$odd" class="odd2">
+                                {{getEnrollmentDate(e.EnrollmentDate) | date:"EEEE dd-MMM-yyyy"}}
+                            </td>
+                            @if (Session["Email"] != null)
+                            {
+                                <td ng-if="$even" class="even2">
+                                    <input class="check-box" disabled="disabled" type="checkbox" ng-model="e.IsValid" />
+                                     | 
+                                    <a ng-if="e.IsValid" ng-href="/Exams/Delete/{{e.ExamID}}">Delete</a>
+                                    <a ng-if="!e.IsValid" ng-href="/Exams/Delete/{{e.ExamID}}">Publish</a>
+                                </td>
+                                <td ng-if="$odd" class="odd2">
+                                    <input class="check-box" disabled="disabled" type="checkbox" ng-model="e.IsValid" />
+                                     | 
+                                    <a ng-if="e.IsValid" ng-href="/Exams/Delete/{{e.ExamID}}">Delete</a>
+                                    <a ng-if="!e.IsValid" ng-href="/Exams/Delete/{{e.ExamID}}">Publish</a>
+                                </td>
+                            }
+                        </tr>
+                    </table>
+                    <div ng-if="(student != null) && (student.Exams.length < 1)">
+                        <h1 class="error">
+                            Student : {{student.StudentName}}
+                            with Registration No. {{student.RegNo}}
+                            has not Enrolled any course in this semester
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="row5" class="panel-footer">
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="right btn-group">
+                        <a ng-repeat="page in student.Exams | pageCount:pageSize"
+                           ng-click="selectPage($index+1)" class="btn btn-default"
+                           ng-class="getBtnClass($index+1)">
+                            {{$index+1}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

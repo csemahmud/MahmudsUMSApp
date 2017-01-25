@@ -1,0 +1,65 @@
+﻿@model MahmudsUMSApp.Models.Student
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="fa fa-2x">Details</h2>
+
+<fieldset>
+    <legend>Student</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RegNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RegNo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.StudentName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StudentName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ContactNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ContactNo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Address)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AdmissionDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AdmissionDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Department.DeptCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Department.DeptCode)
+    </div>
+
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.StudentID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

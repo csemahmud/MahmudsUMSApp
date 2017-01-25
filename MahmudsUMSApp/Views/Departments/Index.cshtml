@@ -1,0 +1,39 @@
+﻿@model IEnumerable<MahmudsUMSApp.Models.Department>
+
+@{
+    ViewBag.Title = "List of All Departments :-";
+}
+
+<h2 class="fa fa-2x">List of All Departments :-</h2>
+
+<p>
+    @Html.ActionLink("Enter New Department", "Create")
+</p>
+<table class="table table-responsive table-bordered table-condensed table-striped table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DeptCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeptName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeptCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeptName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.DepartmentID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DepartmentID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DepartmentID })
+        </td>
+    </tr>
+}
+
+</table>

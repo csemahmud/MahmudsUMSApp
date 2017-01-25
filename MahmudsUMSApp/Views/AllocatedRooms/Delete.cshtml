@@ -1,0 +1,61 @@
+﻿@model MahmudsUMSApp.Models.AllocatedRoom
+
+@{
+    ViewBag.Title = "Unallocate";
+}
+
+<h2 class="fa fa-2x">Unallocate</h2>
+
+<h3>Are you sure you want to unallocate this class room?</h3>
+<fieldset>
+    <legend>AllocatedRoom</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Course.CourseCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Course.CourseCode)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Course.CourseName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Course.CourseName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Room.RoomNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Room.RoomNo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.WeekDay.DayName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.WeekDay.DayName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.StartTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StartTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EndTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EndTime)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Unallocate" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

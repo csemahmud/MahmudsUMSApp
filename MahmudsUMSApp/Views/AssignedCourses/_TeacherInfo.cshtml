@@ -1,0 +1,32 @@
+﻿@model MahmudsUMSApp.Models.Teacher
+
+@{
+    string creditsToBeTaken = string.Empty;
+    string creditsRemaining = string.Empty;
+    if(Model != null)
+    {
+        creditsToBeTaken = Model.CreditsToBeTaken.ToString();
+        double cRemaining = Model.CreditsToBeTaken - Model.CreditsHaveTaken;
+        creditsRemaining = cRemaining.ToString();
+    }
+}
+
+<div id="TeacherInfo">
+
+    <div class="display-label">
+        <strong>
+            @Html.DisplayNameFor(model => model.CreditsToBeTaken)
+        </strong>
+        <input class="input_style" id="CreditsToBeTaken" type="text"
+               value="@creditsToBeTaken" disabled="disabled" />
+    </div>
+
+    <div class="display-label">
+        <strong>
+            Credits Remaining :-
+        </strong>
+        <input class="input_style" id="CreditsRemaining" type="text"
+               value="@creditsRemaining" disabled="disabled" />
+    </div>
+
+</div>

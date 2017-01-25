@@ -1,0 +1,84 @@
+﻿@model MahmudsUMSApp.Models.Exam
+
+@{
+    ViewBag.Title = "Result Entry";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="fa fa-2x">Result Entry</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Result Entry</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StudentID, "Student")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("StudentID", " - Select Student - ")
+            @Html.ValidationMessageFor(model => model.StudentID)
+        </div>
+
+        <div class="editor-field">
+            @Html.Partial("~/Views/Exams/_ExamStudentInfo.cshtml", Model)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CourseID, "Course")
+        </div>
+        <div class="editor-field">
+            @Html.Partial("~/Views/Exams/_LoadCourse.cshtml")
+            @Html.ValidationMessageFor(model => model.CourseID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.GradeID, "Grade")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("GradeID", " - Select Grade - ")
+            @Html.ValidationMessageFor(model => model.GradeID)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("View all Enrolled Students", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+
+        function FillData(id) {
+            $("#exam_student_info").load('@Url.Action("ExamStudentInfo")', { studentID: id });
+            $("#CourseID").load('@Url.Action("LoadCourseByEnrollment")', { studentID: id });
+        }
+
+        $(document).ready(function () {
+            $("#StudentID").change(function () {
+                var id = $("#StudentID :selected").val();
+                FillData(id);
+            });
+        });
+
+    </script>
+
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+                $(document).ready(function () {
+                    alert("@ViewBag.Message");
+                });
+        </script>
+    }
+
+}

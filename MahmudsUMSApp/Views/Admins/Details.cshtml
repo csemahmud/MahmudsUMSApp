@@ -1,0 +1,43 @@
+﻿@model MahmudsUMSApp.Models.Admin
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="fa fa-2x">Details</h2>
+
+<fieldset>
+    <legend>Admin</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AdminName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AdminName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Password)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Password)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IsActive)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsActive)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.AdminID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

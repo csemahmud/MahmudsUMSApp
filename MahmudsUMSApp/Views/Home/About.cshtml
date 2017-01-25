@@ -1,0 +1,317 @@
+﻿@{
+    ViewBag.Title = "Programmed By";
+}
+
+@section Scripts{
+
+    <style type="text/css">
+
+        img {
+            float: left;
+            width: 100%;
+            max-width: 200px;
+            text-align: center;
+        }
+
+        #topheader {
+            height: auto;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        #headerAJS {
+            height: auto;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        #headerCount {
+            height: auto;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        .skills {
+            float: left;
+            width: 100%;
+        }
+
+        .skills li {
+            float: left;
+            margin-left: 30px;
+        }
+
+        #row1 {
+            height: auto;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        #row2 {
+            height: auto;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        #row3 {
+            height: auto;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        #row4 {
+            height: auto;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+    </style>
+
+}
+
+<div style="width: 100%; float: left;">
+    <div class="container container-fluid">
+        <div id="topheader" class="panel panel-heading">
+            <div class="row-fluid">
+                <div class="col-lg-5 span5">
+                    <h3 id="headerAJS" class="fa fa-2x">@ViewBag.Title</h3>
+                </div>
+                <div class="col-lg-7 span7">
+                    <h4 id="headerCount">
+                        <i class="icon-bar"></i>@ViewBag.Message
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <div id="row1" class="panel-body">
+            <div class="row-fluid">
+                <div class="col-lg-4 span4">
+                    <figure>
+                        <img src="~/Images/passport03_mhk.jpg" />
+                    </figure>
+                </div>
+                <div class="col-lg-8 span8">
+                    <table class="table table-responsive table-bordered table-condensed table-striped table-hover">
+                        <tr>
+                            <td>
+                                <span class="fa">
+                                    <strong>Name</strong>
+                                </span>
+                            </td>
+                            <td>:</td>
+                            <td>
+                                <span class="fa fa-2x">
+                                    MAHMUDUL HASAN KHAN
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="fa">
+                                    <strong>Email</strong>
+                                </span>
+                            </td>
+                            <td>:</td>
+                            <td>
+                                <span class="fa">cse.mahmudul@gmail.com</span>
+                                <span>,</span>
+                                <span class="fa">hasan417@diu.edu.bd</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="fa">
+                                    <strong>Phone</strong>
+                                </span>
+                            </td>
+                            <td>:</td>
+                            <td>
+                                <span class="fa">+8801701757766</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="fa">
+                                    <strong>Address</strong>
+                                </span>
+                            </td>
+                            <td>:</td>
+                            <td>
+                                <p class="fa">
+                                    New-Market   City  Complex,   C – Tower,
+                                    Floor   no:- 12,
+                                    Flat   no:- 12/C-1,   Biswas   Builders
+                                    Limited,  44/1   Rahim   Square,
+                                    New-Market,   Dhaka :- 1205,   Bangladesh
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="row2" class="panel-body">
+            <div class="row-fluid">
+                <div class="span12">
+                    <h3>Skills :</h3>
+                    <ol class="skills">
+                        <li>ASP.Net,</li>
+                        <li>JAVA SE,</li>
+                        <li>Angular.Js,</li>
+                        <li>PHP (CodeIgniter Framework),</li>
+                        <li>UML,</li>
+                        <li>C,</li>
+                        <li>Algorithms,</li>
+                        <li>WordPress</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div id="row3" class="box panel-body sortable">
+            <div class="box row-fluid sortable">
+                <div class="box-content span12">
+                    <h3><span class="fa"> Academic Qualification </span></h3>
+                    <table class="table table-responsive table-bordered table-condensed table-striped table-hover">
+                        <tr>
+                            <th>Degree</th>
+                            <th>Institute</th>
+                            <th>CGPA</th>
+                            <th>Pass. Year</th>
+                            <th>Duration</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <abbr title="Master of Science">
+                                    M.Sc.
+                                </abbr> in
+                                <abbr title="Computer Science & Engineering">
+                                    CSE
+                                </abbr>
+                            </td>
+                            <td>
+                                <a href="http://www.daffodilvarsity.edu.bd/" target="_blank">
+                                    Daffodil International University
+                                </a>
+                            </td>
+                            <td>3.96 out of 4.0</td>
+                            <td>2015</td>
+                            <td>1 year ( 36 credits )</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <abbr title="Bachelor of Science in Engineering">
+                                    B.Sc.(Engg.)
+                                </abbr> in
+                                <abbr title="Computer Science & Engineering">
+                                    CSE
+                                </abbr>
+                            </td>
+                            <td>
+                                <a href="http://mbstu.ac.bd/index.html" target="_blank">
+                                    Mawlana Bhashani Science & Technology University
+                                </a>
+                            </td>
+                            <td>3.28 out of 4.0</td>
+                            <td>2014</td>
+                            <td>4 years ( 160 credits )</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <abbr title="Higher Secondary School Certificate">
+                                    H.S.C.
+                                </abbr> ( Science Group )
+                            </td>
+                            <td>Udayan Uchcha Madhyamik Bidyalay</td>
+                            <td>4.60 out of 5.0</td>
+                            <td>2007</td>
+                            <td>2 years</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <abbr title="Secondary School Certificate">
+                                    S.S.C.
+                                </abbr> ( Science Group )
+                            </td>
+                            <td>Udayan Bidyalaya</td>
+                            <td>5.0 out of 5.0</td>
+                            <td>2005</td>
+                            <td>10 years</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="row4" class="box panel-body sortable">
+            <div class="box row-fluid sortable">
+                <div class="box-content span12">
+                    <h3><span class="fa"> Training Summary </span></h3>
+                    <table class="table table-responsive table-bordered table-condensed table-striped table-hover">
+                        <tr>
+                            <th>Training Title</th>
+                            <th>Topic</th>
+                            <th>Institute</th>
+                            <th>Location</th>
+                            <th>Year</th>
+                            <th>Duration</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                Object Oriented Programming (OOP) – ASP.Net (C#)
+                            </td>
+                            <td>
+                                C#, OOP, Angular JS, ASP.Net (MVC)
+                            </td>
+                            <td>
+                                <abbr title="Bangladesh Institute of Technology & Management">
+                                    <a href="https://www.facebook.com/pages/BITM/532151840156223" target="_blank">
+                                        BITM
+                                    </a>
+                                </abbr> under
+                                <abbr title="Bangladesh Association of Software and Information Service">
+                                    <a href="http://www.basis.org.bd/" target="_blank">BASIS</a>
+                                </abbr>
+                            </td>
+                            <td>12, Kawran-Bazar, Dhaka-1215, Bangladesh</td>
+                            <td>2013</td>
+                            <td>150 Hours</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                OOP (MVC) PHP with CodeIgniter Framework
+                            </td>
+                            <td>
+                                HTML5, CSS3, JavaScript, PHP (with C.I.), MySQL
+                            </td>
+                            <td>
+                                <abbr title="Bangladesh Institute of Technology & Management">
+                                    <a href="https://www.facebook.com/pages/BITM/532151840156223" target="_blank">
+                                        BITM
+                                    </a>
+                                </abbr> under
+                                <abbr title="Bangladesh Association of Software and Information Service">
+                                    <a href="http://www.basis.org.bd/" target="_blank">BASIS</a>
+                                </abbr>
+                            </td>
+                            <td>12, Kawran-Bazar, Dhaka-1215, Bangladesh</td>
+                            <td>2014</td>
+                            <td>120 Hours</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

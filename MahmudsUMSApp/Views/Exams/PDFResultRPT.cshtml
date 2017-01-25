@@ -1,0 +1,95 @@
+﻿@model IEnumerable<MahmudsUMSApp.Models.Exam>
+
+@{
+    Layout = null;
+}
+
+<itext creationdate="@DateTime.Now.ToString()" producer="RazorPDF">
+    <table width="100%" cellpadding="0.5" cellspacing="0.5" widths="100" border-width="1.0" left="false" right="false" top="false" bottom="false" red="0" green="0" blue="0">
+        
+        <row>
+            <cell><chunk style="font-weight:bolder">Example University of Technology</chunk></cell>
+        </row>
+        
+        <row>
+            <cell><chunk>Grade Sheet Report of Examinaion</chunk></cell>
+        </row>
+        
+        <row>
+            <cell><chunk>Report Date : @DateTime.Now</chunk></cell>
+        </row>
+
+    </table>
+    <table class="table table-hover" width="100%" cellpadding="0.5" cellspacing="0.5" widths="30;70" border-width="1.0" left="false" right="false" top="false" bottom="false" red="0" green="0" blue="0">
+        @foreach(var item in Model)
+        {
+            <row>
+                <cell>
+                    <chunk> Student Name : </chunk>
+                </cell>
+                <cell>
+                    <chunk>
+                        @Html.DisplayFor(modelItem => item.Student.StudentName)
+                    </chunk>
+                </cell>
+            </row>
+            <row>
+                <cell>
+                    <chunk> Email : </chunk>
+                </cell>
+                <cell>
+                    <chunk>
+                        @Html.DisplayFor(modelItem => item.Student.Email)
+                    </chunk>
+                </cell>
+            </row>
+            <row>
+                <cell>
+                    <chunk> Department : </chunk>
+                </cell>
+                <cell>
+                    <chunk>
+                        @Html.DisplayFor(modelItem => item.Student.Department.DeptName)
+                    </chunk>
+                </cell>
+            </row>
+            break;
+        }
+    </table>
+    <table class="table table-hover" width="100%" cellpadding="0.5" cellspacing="0.5" widths="20;60;20" border-width="1.0" left="false" right="false" top="false" bottom="false" red="0" green="0" blue="0">
+        <row>
+            <cell>
+                <chunk> Course Code : </chunk>
+            </cell>
+        </row>
+        <row>
+            <cell>
+                <chunk> Course Name : </chunk>
+            </cell>
+        </row>
+        <row>
+            <cell>
+                <chunk> Letter Grade : </chunk>
+            </cell>
+        </row>
+
+        @foreach(var item in Model)
+        {
+            <row>
+                <cell>
+                    <chunk> @Html.DisplayFor(modelItem => item.Course.CourseCode) </chunk>
+                </cell>
+            </row>
+            <row>
+                <cell>
+                    <chunk> @Html.DisplayFor(modelItem => item.Course.CourseName) </chunk>
+                </cell>
+            </row>
+            <row>
+                <cell>
+                    <chunk> @Html.DisplayFor(modelItem => item.Grade.GradeLetter) </chunk>
+                </cell>
+            </row>
+        }
+    </table>
+</itext>

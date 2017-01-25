@@ -1,0 +1,65 @@
+﻿@model MahmudsUMSApp.Models.Exam
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2 class="fa fa-2x">Delete</h2>
+
+<h3>@ViewBag.Message</h3>
+<fieldset>
+    <legend>Exam</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Student.RegNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Student.RegNo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Course.CourseCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Course.CourseCode)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Course.CourseName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Course.CourseName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EnrollmentDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EnrollmentDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Grade.GradeLetter)
+    </div>
+    
+    @if (Model.IsGradeSubmitted)
+    {
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Grade.GradeLetter)
+        </div>
+    }
+    else
+    {
+        <div class="display-field">
+            <strong class="error">Result Not Published Yet</strong>
+        </div> 
+    }
+
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="@ViewBag.Function" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

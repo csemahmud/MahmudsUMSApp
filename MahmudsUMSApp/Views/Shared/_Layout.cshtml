@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - M@hmud's UMS</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Styles.Render("~/Content/bootstrap")
+        @Styles.Render("~/Content/uibootstrap")
+        @Styles.Render("~/Content/font")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryui")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/angular")
+        @Scripts.Render("~/bundles/angularui")
+        @RenderSection("scripts", required: false)
+
+        <style type="text/css">
+
+            #logoDiv #logoContainer {
+                float: left;
+                width: 15%;
+                max-width: 75px;
+                max-height: 75px;
+            }
+
+                #logoDiv #logoContainer #logoImg{
+                    float: left;
+                    width: 100%;
+                    max-width: 70px;
+                    max-height: 70px;
+                }
+
+                #logoDiv #logoContainer #logoCaption {
+                    float: left;
+                    width: 100%;
+                    text-align: center;
+                }
+
+            #logoNameContainer {
+                float: left;
+                width: 84%;
+            }
+
+                #logoNameContainer #logoName {
+                    float: left;
+                    width: 100%;
+                }
+
+        </style>
+
+    </head>
+    <body>
+        <header>
+            <div class="content-wrapper">
+                <div id="logoDiv">
+                    <figure id="logoContainer" class="float-left">
+                        <img id="logoImg" src="~/Images/logo.jpg" />
+                        <figcaption id="logoCaption">&nbsp;</figcaption>
+                    </figure>
+                </div>
+                <div id="logoNameContainer" class="float-left">
+                    <p id="logoName" class="fa fa-2x site-title">@Html.ActionLink("M@hmud's UMS", "Index", "Home")</p>
+                </div>
+                <div class="float-right">
+                    <section id="login">
+                        @if (Session["AdminName"] != null)
+                        {
+                            if(Session["AdminName"].ToString() != string.Empty)
+                            {
+                                <span> Logged in as : 
+                                    <span class="fa">@Session["AdminName"].ToString()</span>
+                                </span>
+                            }
+                        }
+                    </section>
+                    <nav>
+                        <ul id="menu">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            @if(Session["Email"] != null)
+                            {
+                                <li>@Html.ActionLink("Department", "Index", "Departments")</li>
+                                <li>@Html.ActionLink("Teacher", "Index", "Teachers")</li>
+                                <li>@Html.ActionLink("Course", "Index", "Courses")</li>
+                                <li>@Html.ActionLink("Assigned Course", "Index", "AssignedCourses")</li>
+                                <li>@Html.ActionLink("Class Room", "Index", "AllocatedRooms")</li>
+                                <li>@Html.ActionLink("Student", "Index", "Students")</li>
+                            }
+                            <li>@Html.ActionLink("Exam", "Index", "Exams")</li>
+                            @if (Session["Email"] == null)
+                            {
+                                <li>@Html.ActionLink("Log In", "LogIn", "Admins")</li>
+                            }
+                            @if(Session["Email"] != null)
+                            {
+                                <li>@Html.ActionLink("Log Out", "LogOut", "Admins")</li>
+                            }
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - cse.mahmudul@gmail.com</p>
+                </div>
+            </div>
+        </footer>
+
+    </body>
+</html>

@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "UnAssign All Courses";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="fa fa-2x">UnAssign All Courses</h2>
+
+<div><h1 class="fa fa-2x">@ViewBag.Message</h1></div>
+
+<form action="UnAssignConfirmed">
+    <input type="submit" value="UnAssign All" />
+</form>
+
+<form action="Index">
+    <input type="submit" value="Cancel" />
+</form>

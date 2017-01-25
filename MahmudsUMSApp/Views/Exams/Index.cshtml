@@ -1,0 +1,74 @@
+﻿@model IEnumerable<MahmudsUMSApp.Models.Exam>
+
+@{
+    ViewBag.Title = "View Result";
+}
+
+<h2 class="fa fa-2x">View Result :-</h2>
+
+<p>
+    @Html.ActionLink("AngularJs Result View", "AngularJs")
+    @if (Session["Email"] != null)
+    {
+        <span>|</span>@Html.ActionLink("Enroll New Student", "Create")
+        <span>|</span>@Html.ActionLink("Enter Result", "ResultEntry")
+    }
+</p>
+
+<form action="/Exams/ViewPDFResult" method="post">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Exam</legend>
+
+        <div class="editor-label">
+            @Html.DisplayNameFor(model => model.Student.RegNo)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("StudentID", " - Select Student - ")
+        </div>
+
+        <div class="editor-field">
+            @Html.Partial("~/Views/Exams/_ExamStudentInfo.cshtml", Model)
+        </div>
+
+        <p>
+            <input type="submit" value="View in PDF" />
+        </p>
+    </fieldset>
+</form>                      
+    
+    <div id="exam_data">
+        @Html.Partial("~/Views/Exams/_ExamFilteredList.cshtml")
+    </div>
+
+    @section Scripts{                      
+        @Scripts.Render("~/bundles/jqueryval")
+
+        <script type="text/javascript">
+
+            function FillData(id) {
+                $("#exam_student_info").load('@Url.Action("ExamStudentInfo")', { studentID: id });
+                $("#exam_data").load('@Url.Action("ExamFilteredList")', { studentID: id });
+            }
+
+            $(document).ready(function () {
+                $("#StudentID").change(function () {
+                    var id = $("#StudentID :selected").val();
+                    FillData(id);
+                });
+            });
+
+        </script>                      
+        
+        @if (ViewBag.Message != null)
+        {
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    alert("@ViewBag.Message");
+                });
+            </script>
+        }
+
+    }

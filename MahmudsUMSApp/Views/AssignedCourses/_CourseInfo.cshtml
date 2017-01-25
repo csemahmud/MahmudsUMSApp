@@ -1,0 +1,31 @@
+﻿@model MahmudsUMSApp.Models.Course
+
+@{
+    string courseName = string.Empty;
+    string credit = string.Empty;
+    if(Model != null)
+    {
+        courseName = Model.CourseName;
+        credit = Model.Credit.ToString();
+    }
+}
+
+<div id="CourseInfo">
+
+    <div class="display-label">
+        <strong>
+            @Html.DisplayNameFor(model => model.CourseName)
+        </strong>
+        <input class="input_style" id="CourseName" type="text"
+               value="@courseName" disabled="disabled" />
+    </div>
+
+    <div class="display-label">
+        <strong>
+            @Html.DisplayNameFor(model => model.Credit)
+        </strong>
+        <input class="input_style" id="Credit" type="text"
+               value="@credit" disabled="disabled" />
+    </div>
+
+</div>

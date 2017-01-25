@@ -1,0 +1,29 @@
+﻿@model MahmudsUMSApp.Models.Department
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="fa fa-2x">Details</h2>
+
+<fieldset>
+    <legend>Department</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DeptCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DeptCode)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DeptName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DeptName)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.DepartmentID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

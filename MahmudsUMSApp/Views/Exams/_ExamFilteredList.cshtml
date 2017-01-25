@@ -1,0 +1,69 @@
+﻿@model IEnumerable<MahmudsUMSApp.Models.Exam>
+
+<table class="table table-responsive table-bordered table-condensed table-striped table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Course.CourseCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Course.CourseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Grade.GradeLetter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EnrollmentDate)
+        </th>
+        @if (Session["Email"] != null)
+        {
+            <th>
+                @Html.DisplayNameFor(model => model.IsValid)
+            </th>
+        }
+    </tr>
+
+@foreach (var item in Model) 
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Course.CourseCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Course.CourseName)
+        </td>
+        @if (item.IsGradeSubmitted)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.Grade.GradeLetter)
+            </td>
+        }
+        else
+        {
+            <td class="error">Not Published</td>
+        }
+        <td>
+            @Html.DisplayFor(modelItem => item.EnrollmentDate)
+        </td>
+        @if (Session["Email"] != null)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.IsValid)
+                 | 
+                @if(item.IsValid)
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id=item.ExamID })
+                }
+                else
+                {
+                    @Html.ActionLink("Publish", "Delete", new { id=item.ExamID })
+                }
+            </td>
+        }
+    </tr>
+}
+
+</table>
+
+<div>
+    <h1 class="error">@ViewBag.NotEnRolled</h1>
+</div>

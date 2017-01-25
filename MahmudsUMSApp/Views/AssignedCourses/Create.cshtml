@@ -1,0 +1,121 @@
+﻿@model MahmudsUMSApp.Models.AssignedCourse
+
+@{
+    ViewBag.Title = "Assign a Course to a Teacher :-";
+}
+
+@section Scripts {
+    <style type="text/css">
+
+        .input_style{
+            width: 50px;
+            background-color: transparent;
+        }
+
+        #CourseName {
+            width: 300px;
+        }
+
+    </style>
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+
+            function FillData(id) {
+                $("#TeacherID").load('@Url.Action("LoadTeacherDropDown")', { departmentID: id });
+                $("#CourseID").load('@Url.Action("LoadCourseDropDown")', { departmentID: id });
+                $("#CreditsToBeTaken").val("");
+                $("#CreditsRemaining").val("");
+                $("#CourseName").val("");
+                $("#Credit").val("");
+            }
+
+            $(document).ready(function () {
+                $("#DepartmentID").change(function () {
+                    var id = $("#DepartmentID :selected").val();
+                    FillData(id);
+                });
+
+                $("#TeacherID").change(function () {
+                    var id = $("#TeacherID :selected").val();
+                    $("#TeacherInfo").load('@Url.Action("TeacherInfo")', { teacherID: id });
+                });
+
+                $("#CourseID").change(function () {
+                    var id = $("#CourseID :selected").val();
+                    $("#CourseInfo").load('@Url.Action("CourseInfo")', { courseID: id });
+                });
+
+                $("#assignCourseSubmitBtn").click(function () {
+                    if (parseFloat($("#CreditsRemaining").val()) < parseFloat($("#Credit").val())) {
+                        return confirm("Teacher :- " + $("#TeacherID :selected").text()
+                            + " has only " + parseFloat($("#CreditsRemaining").val())
+                            + " credits remaining .\nBut the credits of the course :- "
+                            + $("#CourseID :selected").text() + " is "
+                            + parseFloat($("#Credit").val())
+                            + " .\nAre you sure, you want to assign this course to this teacher ?");
+                    }
+                });
+            });
+
+    </script>
+
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+                alert("@ViewBag.Message");
+            });
+        </script>
+    }
+
+}
+
+<h2 class="fa fa-2x">Assign a Course to a Teacher :-</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>AssignedCourse</legend>
+
+        <div class="editor-label">
+            <strong>Select Department :-</strong>
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("DepartmentID", " - Select Department -")
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TeacherID, "Teacher")
+        </div>
+        <div class="editor-field">
+            @Html.Partial("~/Views/AssignedCourses/_LoadTeacherDropDown.cshtml")
+            @Html.ValidationMessageFor(model => model.TeacherID)
+        </div>
+        <div class="editor-field">
+            @Html.Partial("~/Views/AssignedCourses/_TeacherInfo.cshtml")
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CourseID, "Course")
+        </div>
+        <div class="editor-field">
+            @Html.Partial("~/Views/AssignedCourses/_LoadCourseDropDown.cshtml")
+            @Html.ValidationMessageFor(model => model.CourseID)
+        </div>
+        <div class="editor-field">
+            @Html.Partial("~/Views/AssignedCourses/_CourseInfo.cshtml")
+        </div>
+
+        <p>
+            <input id="assignCourseSubmitBtn" type="submit" value="Assign" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("View Course Statistics", "Index")
+</div>

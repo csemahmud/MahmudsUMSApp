@@ -1,0 +1,51 @@
+﻿@model IEnumerable<MahmudsUMSApp.Models.AssignedCourse>
+
+@{
+    ViewBag.Title = "View Course Statistics";
+}
+
+    @section Scripts{
+
+        <script type="text/javascript">
+
+            function FillData(id) {
+                $("#course_data").load('@Url.Action("CourseFilteredList")', { departmentID : id });
+            }
+
+            $(document).ready(function () {
+                $("#DepartmentID").change(function () {
+                    var id = $("#DepartmentID :selected").val();
+                    FillData(id);
+                });
+            });
+
+        </script>
+
+    }
+
+<h2 class="fa fa-2x">View Course Statistics</h2>
+
+<p>
+    @Html.ActionLink("Assign a Course to a Teacher", "Create")
+    | @Html.ActionLink("AngularJs Course Statistics", "AngularJs")
+    | @Html.ActionLink("UnAssign All Courses", "UnAssignAllCourses")
+</p>
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>Assigned Courses</legend>
+
+        <div class="editor-label">
+            <strong>Select Department :-</strong>
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("DepartmentID", " - Select Department -")
+        </div>
+    </fieldset>
+
+}
+
+<div id="course_data">
+    @Html.Partial("~/Views/AssignedCourses/_CourseFilteredList.cshtml")
+</div>

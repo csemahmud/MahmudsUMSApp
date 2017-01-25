@@ -1,0 +1,75 @@
+﻿@model MahmudsUMSApp.Models.Teacher
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2 class="fa fa-2x">Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Teacher</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TeacherName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TeacherName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Address)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ContactNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ContactNo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreditsToBeTaken)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreditsToBeTaken)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreditsHaveTaken)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreditsHaveTaken)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Department.DeptCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Department.DeptCode)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Designation.DsgName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Designation.DsgName)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

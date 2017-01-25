@@ -1,0 +1,69 @@
+﻿@model IEnumerable<MahmudsUMSApp.Models.Student>
+
+@{
+    ViewBag.Title = "List of all students";
+}
+
+<h2 class="fa fa-2x">List of all students :-</h2>
+
+<p>
+    @Html.ActionLink("Register New Student", "Create")
+</p>
+<table class="table table-responsive table-bordered table-condensed table-striped table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RegNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdmissionDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department.DeptCode)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RegNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdmissionDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department.DeptCode)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.StudentID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.StudentID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.StudentID })
+        </td>
+    </tr>
+}
+
+</table>

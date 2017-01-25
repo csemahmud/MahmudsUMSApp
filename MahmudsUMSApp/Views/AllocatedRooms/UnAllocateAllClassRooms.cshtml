@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "UnAllocate All Class Rooms";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="fa fa-2x">UnAllocate All Class Rooms</h2>
+
+<div><h1 class="fa fa-2x">@ViewBag.Message</h1></div>
+
+<form action="UnAllocateConfirmed">
+    <input type="submit" value="UnAllocate All" />
+</form>
+
+<form action="Index">
+    <input type="submit" value="Cancel" />
+</form>

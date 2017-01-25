@@ -1,0 +1,103 @@
+﻿@model MahmudsUMSApp.Models.Student
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2 class="fa fa-2x">Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Student</legend>
+
+        @Html.HiddenFor(model => model.StudentID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RegNo)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.RegNo)
+            @Html.HiddenFor(model => model.RegNo)
+            @Html.ValidationMessageFor(model => model.RegNo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StudentName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.StudentName)
+            @Html.ValidationMessageFor(model => model.StudentName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ContactNo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ContactNo)
+            @Html.ValidationMessageFor(model => model.ContactNo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address)
+            @Html.ValidationMessageFor(model => model.Address)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AdmissionDate)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.AdmissionDate)
+            @Html.HiddenFor(model => model.AdmissionDate)
+            @Html.ValidationMessageFor(model => model.AdmissionDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DepartmentID, "Department")
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.Department.DeptCode)
+            @Html.HiddenFor(model => model.DepartmentID)
+            @Html.ValidationMessageFor(model => model.DepartmentID)
+        </div>
+
+        <div class="editor-field">
+            @Html.HiddenFor(model => model.IsActive)
+            @Html.ValidationMessageFor(model => model.IsActive)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+                $(document).ready(function () {
+                    alert("@ViewBag.Message");
+                });
+        </script>
+    }
+}

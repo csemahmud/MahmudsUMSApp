@@ -1,0 +1,1 @@
+﻿var MahmudsUMSApp = angular.module('MahmudsUMSApp', []).constant("ALL_STR", "<< ALL >>");

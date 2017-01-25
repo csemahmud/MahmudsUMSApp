@@ -1,0 +1,54 @@
+﻿@model IEnumerable<MahmudsUMSApp.Models.Admin>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div>
+    <h1 class="fa fa-2x">@ViewBag.Message</h1>
+</div>
+<h2 class="fa fa-2x">List of Admins</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-responsive table-bordered table-condensed table-striped table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdminName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AdminID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AdminID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AdminID })
+        </td>
+    </tr>
+}
+
+</table>

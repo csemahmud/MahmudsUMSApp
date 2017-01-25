@@ -1,0 +1,47 @@
+﻿@model IEnumerable<MahmudsUMSApp.Models.AssignedCourse>
+
+<table class="table table-responsive table-bordered table-condensed table-striped table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Course.CourseCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Course.CourseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Teacher.TeacherName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Course.Semester.SemesterName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Course.CourseCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Course.CourseName)
+        </td>
+        <td>
+            @if(item.IsValid == false || item.IsAssigned == false)
+            {
+                <strong>Not Yet Assigned</strong>
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.Teacher.TeacherName)
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Course.Semester.SemesterName)
+        </td>
+        <td>
+            @Html.ActionLink("Unassign", "Delete", new { id=item.AssignedCourseID })
+        </td>
+    </tr>
+}
+
+</table>

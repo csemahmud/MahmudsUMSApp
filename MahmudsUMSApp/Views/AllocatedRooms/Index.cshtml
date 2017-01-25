@@ -1,0 +1,58 @@
+﻿@model IEnumerable<MahmudsUMSApp.Models.Course>
+
+    @{
+        ViewBag.Title = "View Room Allocation";
+    }
+
+    @section Scripts{
+
+        <style type="text/css">
+            .a_room {
+                color: #000033;
+                background-color: #ffffff;
+            }
+        </style>
+
+        <script type="text/javascript">
+
+            function FillData(id) {
+                $("#room_data").load('@Url.Action("AllocatedRoomFilteredList")', { departmentID: id });
+            }
+
+            $(document).ready(function () {
+                $("#DepartmentID").change(function () {
+                    var id = $("#DepartmentID :selected").val();
+                    FillData(id);
+                });
+            });
+
+        </script>
+
+    }
+
+    <h2 class="fa fa-2x">View Class Schedule and Room Allocation Information :-</h2>
+
+    <p>
+        @Html.ActionLink("Allocate a Class Room for a Course", "Create")
+        | @Html.ActionLink("AngularJs Room Allocation", "AngularJs")
+        | @Html.ActionLink("UnAllocate All Class Rooms", "UnAllocateAllClassRooms")
+    </p>
+
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+            <legend>Allocated Rooms</legend>
+
+            <div class="editor-label">
+                <strong>Select Department :-</strong>
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList("DepartmentID", " - Select Department -")
+            </div>
+        </fieldset>
+
+    }
+
+    <div id="room_data">
+        @Html.Partial("~/Views/AllocatedRooms/_AllocatedRoomFilteredList.cshtml")
+    </div>

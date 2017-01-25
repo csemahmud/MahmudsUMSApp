@@ -1,0 +1,96 @@
+﻿@model MahmudsUMSApp.Models.Student
+
+@{
+    ViewBag.Title = "Student Registration";
+}
+
+<h2 class="fa fa-2x">Student Registration :-</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Student</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StudentName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.StudentName)
+            @Html.ValidationMessageFor(model => model.StudentName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ContactNo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ContactNo)
+            @Html.ValidationMessageFor(model => model.ContactNo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address)
+            @Html.ValidationMessageFor(model => model.Address)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AdmissionDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AdmissionDate)
+            @Html.ValidationMessageFor(model => model.AdmissionDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DepartmentID, "Department")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("DepartmentID", String.Empty)
+            @Html.ValidationMessageFor(model => model.DepartmentID)
+        </div>
+
+        <p>
+            <input type="submit" value="Register" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("View All Students", "Index")
+</div>
+
+@section Scripts {
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#AdmissionDate").datepicker({
+                dateFormat: 'mm/dd/yy',
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+                alert("@ViewBag.Message");
+            });
+        </script>
+    }
+}

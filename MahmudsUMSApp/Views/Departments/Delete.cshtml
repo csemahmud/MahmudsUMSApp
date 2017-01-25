@@ -1,0 +1,46 @@
+﻿@model MahmudsUMSApp.Models.Department
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2 class="fa fa-2x">Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Department</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DeptCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DeptCode)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DeptName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DeptName)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input id="deleteDeptSubmitBtn" type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+
+@section Scripts {
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#deleteDeptSubmitBtn").click(function () {
+                return confirm("All the teachers, courses and students under department : "
+                    + "@Model.DeptCode" + " will be deleted permanently ."
+                    + "\nAre you sure you want to delete ?");
+            });
+        });
+    </script>
+}

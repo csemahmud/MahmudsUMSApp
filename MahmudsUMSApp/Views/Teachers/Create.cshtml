@@ -1,0 +1,136 @@
+﻿@model MahmudsUMSApp.Models.Teacher
+
+@{
+    ViewBag.Title = "Teacher Entry :-";
+    var emailStr = "";
+    if (Model != null)
+    {
+        emailStr = Model.Email;
+    }
+}
+
+<div ng-app="ValidationApp" class="float_div">
+    <div ng-controller="ValidationController" class="float_div">
+
+        <h2 class="fa fa-2x">Teacher Entry :-</h2>
+
+        <form name="ValidationForm" id="ValidationForm" action="/Teachers/Create" method="post">
+
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <fieldset>
+                <legend>Teacher</legend>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.TeacherName)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.TeacherName)
+                    @Html.ValidationMessageFor(model => model.TeacherName)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Address)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Address)
+                    @Html.ValidationMessageFor(model => model.Address)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Email)
+                </div>
+                <div class="editor-field">
+                    <input class="text-box single-line" data-val="true"
+                           data-val-remote="Error : This Email ID already exists !!!"
+                           data-val-remote-additionalfields="*.Email"
+                           data-val-remote-url="/Teachers/Check_Email"
+                           data-val-required="Error : Email can not be empty !!!"
+                           id="Email" name="Email" type="email" value="@emailStr"
+                           required="required" ng-model="Email" />
+                    <span class="error" ng-show="ValidationForm.Email.$dirty && ValidationForm.Email.$invalid">
+                        <span ng-show="ValidationForm.Email.$error.email">
+                            <strong>
+                                Invalid Email Format !!! &nbsp;&nbsp;&nbsp;
+                            </strong>
+                        </span>
+                    </span>
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ContactNo)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.ContactNo)
+                    @Html.ValidationMessageFor(model => model.ContactNo)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CreditsToBeTaken)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.CreditsToBeTaken)
+                    @Html.ValidationMessageFor(model => model.CreditsToBeTaken)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.DepartmentID, "Department")
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("DepartmentID", String.Empty)
+                    @Html.ValidationMessageFor(model => model.DepartmentID)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.DesignationID, "Designation")
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("DesignationID", String.Empty)
+                    @Html.ValidationMessageFor(model => model.DesignationID)
+                </div>
+
+                <p>
+                    <input class="btn btnDone btn-default btn-primary" type="submit"
+                           value="Save" ng-disabled="ValidationForm.Email.$dirty && ValidationForm.Email.$invalid" />
+                </p>
+            </fieldset>
+        </form>
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+
+</div>
+</div>
+
+@section Scripts {
+
+    <style type="text/css">
+        .float_div {
+            float: left;
+            width: 100%;
+        }
+    </style>
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+
+        var ValidationApp = angular.module("ValidationApp", []);
+        ValidationApp.controller("ValidationController", function ($scope) {
+            $scope.Email = "@emailStr"
+        });
+
+    </script>
+
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+                alert("@ViewBag.Message");
+            });
+        </script>
+    }
+}
